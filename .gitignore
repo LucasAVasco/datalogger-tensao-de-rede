@@ -1,0 +1,10 @@
+# Arquivos de backup
+*~
+.*~
+
+# Arquivos de "swap"
+*.swp
+.*.swp
+
+# Arquivo "data.csv"
+*.csv
