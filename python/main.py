@@ -1,9 +1,18 @@
 #!/usr/bin/python3.8
 
+
+
+# Adicionando o path "modules/"
+import sys
+sys.path.append("modules/")
+
 # Bibliotecas
 import serial
 import serial.tools.list_ports
 import time
+
+# Meus módulos
+import calculate
 
 
 
