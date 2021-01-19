@@ -24,7 +24,7 @@ else:
 ser = serial.Serial(arduino_ports[0].device, 9600)
 
 # Abre o arquivo "data.csv"
-output_file = open("data.csv", 'w')
+voltage_file = open("voltage.csv", 'w')
 
 # Recebe o tempo de inicio
 initial_time = time.time()
@@ -59,7 +59,7 @@ while True:
 
 		if len(values) > 40:
 			for loop in range(len(values)):
-				output_file.write(str(times[loop]) + ',' + str(values[loop]) + '\n')
+				voltage_file.write(str(times[loop]) + ',' + str(values[loop]) + '\n')
 
 		# Reiniciando
 		values = []
@@ -82,4 +82,4 @@ while True:
 ser.close()
 
 # Fecha o arquivo "data.csv"
-output_file.close()
+voltage_file.close()
