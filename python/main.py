@@ -31,17 +31,50 @@ initial_time = time.time()
 
 
 
+# Outras variáveis
+last_val_neg = False
+values = []
+times = []
+
+
+
 # Avisa o arduino que pode começar a medir
-ser.write('a')
+ser.write(1)
 
-# Lee a entrada serial, converte os valores para tensão e escreve no arquivo "data.csv"
+# Loop Principal
 while True:
-	vpk = ser.read(2)
+	# Faz a leitura serial
+	val = ser.read(2)
 
-	vpk = (vpk[0] << 8 + vpk[1] - 511)*250/512
+	# converte os valores em tensão
+	val = ((val[0] << 8) + val[1] - 511)*250/512
 
-	output_file.write(str(time.time() - initial_time) + ',' + str(vpk) + '\n')
+	# Atualiza a lista de tempo
+	times.append(time.time() - initial_time)
 
+
+
+	# Realiza os cálculos e reinicia o período
+	if last_val_neg and val > 0:
+
+		if len(values) > 40:
+			for loop in range(len(values)):
+				output_file.write(str(times[loop]) + ',' + str(values[loop]) + '\n')
+
+		# Reiniciando
+		values = []
+		times = []
+
+
+
+	# Adiciona o valor da tensão à lista
+	values.append(val)
+
+	# Atualiza "last_val_pos"
+	if val > 0:
+		last_val_neg = False
+	elif val < 0:
+		last_val_neg = True
 
 
 
