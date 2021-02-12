@@ -46,8 +46,7 @@ data_file = open("data.csv", 'w')
 if SAVE_VOLTAGE:
 	voltage_file = open("voltage.csv", 'w')
 
-# Atribui os tempos de referência
-initial_time = time.time()
+# Tempo de referência para atualização do gráfico
 last_plot_time = time.time()
 
 
@@ -85,7 +84,7 @@ while True:
 	val = ((val[0] << 8) + val[1] - 511)*250/512
 
 	# Atualiza a lista de tempo
-	times.append(time.time() - initial_time)
+	times.append(time.time())
 
 	# Adiciona o valor da tensão à lista
 	values.append(val)
