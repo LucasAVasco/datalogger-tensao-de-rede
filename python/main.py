@@ -17,6 +17,12 @@ import calculate
 
 
 
+# Variáveis de DEBUG
+SHOW_GRAPH = True
+SAVE_VOLTAGE = True
+
+
+
 # Recebe um objeto com as portas seriais
 arduino_ports = serial.tools.list_ports.comports()
 
@@ -34,8 +40,11 @@ else:
 ser = serial.Serial(arduino_ports[0].device, 9600)
 
 # Abre o arquivo "data.csv"
-voltage_file = open("voltage.csv", 'w')
 data_file = open("data.csv", 'w')
+
+# Abre o arquivo "voltage.csv"
+if SAVE_VOLTAGE:
+	voltage_file = open("voltage.csv", 'w')
 
 # Atribui os tempos de referência
 initial_time = time.time()
@@ -44,15 +53,16 @@ last_plot_time = time.time()
 
 
 # Configura o gráfico de teste
-plt.ion()
-
-figure, ax = plt.subplots()
-line, = ax.plot([0], [0])
-
-plt.title("Tensão por Tempo")
-plt.xlabel("Tempo (ms)")
-plt.ylabel("Tensão (V)")
-plt.ylim(-250, 250)
+if SHOW_GRAPH:
+	plt.ion()
+	
+	figure, ax = plt.subplots()
+	line, = ax.plot([0], [0])
+	
+	plt.title("Tensão por Tempo")
+	plt.xlabel("Tempo (ms)")
+	plt.ylabel("Tensão (V)")
+	plt.ylim(-250, 250)
 
 
 
@@ -87,8 +97,11 @@ while True:
 
 		if len(values) > 40:
 
-			for loop in range(len(values)):
-				voltage_file.write(str(times[loop]) + ',' + str(values[loop]) + '\n')
+			# Salva os valores da voltagem
+			if SAVE_VOLTAGE:
+				voltage_file.write('---------------------------------------------\n')
+				for loop in range(len(values)):
+					voltage_file.write(str(times[loop]) + ',' + str(values[loop]) + '\n')
 
 			# Calcula os valores relacionados à onda
 			media = calculate.media(values)
@@ -99,7 +112,7 @@ while True:
 			data_file.write(str(times[0]) + ',' + str(times[-1]) + ',' + str(vpk) + ',' + str(media) + ',' + str(rms) + '\n')
 
 			# Atualiza o gráfico a cada 3 segundos
-			if time.time() > last_plot_time + 3.0:
+			if SHOW_GRAPH and time.time() > last_plot_time + 3.0:
 				last_plot_time = time.time()
 
 				# Converte o tempo em milissegundos
