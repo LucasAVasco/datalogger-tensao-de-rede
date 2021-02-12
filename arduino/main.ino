@@ -51,8 +51,8 @@ void loop()
 	#endif
 
 	// Envia o inteiro em dois bytes
-	Serial.write(vpk >> 8);
-	Serial.write(vpk);
+	if (Serial.write(vpk >> 8))
+		Serial.write(vpk);
 
 	#endif
 
