@@ -5,6 +5,7 @@
 
 /// Variáveis
 int vpk;
+float value = 0;
 
 
 
@@ -26,10 +27,17 @@ void setup()
 /// Loop principal
 void loop()
 {
-	// Lee o valor da tensão (0 à 1023)
+	// Gera o atraso da leitura de tensão
 	vpk = analogRead(ANALOG_PIN);
+
+	// Para prototipação
+	vpk = int ((sin(value) + 1.0) * 511);
+	value += 0.1;
 
 	// Envia o inteiro em dois bytes
 	if (Serial.write(vpk >> 8))
 		Serial.write(vpk);
+
+	// Leve atraso
+	delay(10);
 }

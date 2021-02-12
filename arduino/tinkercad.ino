@@ -5,6 +5,7 @@
 
 /// Variáveis
 int vpk;
+long value;
 
 
 
@@ -29,7 +30,10 @@ void loop()
 	// Lee o valor da tensão (0 à 1023)
 	vpk = analogRead(ANALOG_PIN);
 
-	// Envia o inteiro em dois bytes
-	if (Serial.write(vpk >> 8))
-		Serial.write(vpk);
+	// Dentro do DEBUG do Tinkercad
+	value = (long(vpk) - 511)*250/512;
+	Serial.print(value);
+	Serial.print('\n');
+
+	delay(10);
 }
