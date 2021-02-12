@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 
 # Meus módulos
 import calculate
+import save_data
 
 
 
@@ -39,8 +40,8 @@ else:
 # Inicia o comunicação serial com a porta do arduino
 ser = serial.Serial(arduino_ports[0].device, 9600)
 
-# Abre o arquivo "data.csv"
-data_file = open("data.csv", 'w')
+# Inicia o armazenamento de dados
+save_data.init()
 
 # Abre o arquivo "voltage.csv"
 if SAVE_VOLTAGE:
@@ -108,7 +109,7 @@ while True:
 			vpk = calculate.vpk(values)
 
 			# Escreve os valores calculados
-			data_file.write(str(times[0]) + ',' + str(times[-1]) + ',' + str(vpk) + ',' + str(media) + ',' + str(rms) + '\n')
+			save_data.write(times[0], times[-1], vpk, media, rms)
 
 			# Atualiza o gráfico a cada 3 segundos
 			if SHOW_GRAPH and time.time() > last_plot_time + 3.0:
@@ -152,4 +153,3 @@ ser.close()
 
 # Fecha o arquivo "data.csv"
 voltage_file.close()
-data_file.close()
