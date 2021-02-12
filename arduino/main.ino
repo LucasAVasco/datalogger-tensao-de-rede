@@ -3,7 +3,7 @@
 
 /// Macros de prototipação
 //#define TINKERCAD_DEBUG
-//#define ARDUINO_DEBUG
+#define ARDUINO_DEBUG
 
 
 
@@ -15,7 +15,7 @@ long value;
 #endif
 
 #ifdef ARDUINO_DEBUG
-int value = 0;
+float value = 0;
 #endif
 
 
@@ -46,8 +46,8 @@ void loop()
 
 	// Para prototipação
 	#ifdef ARDUINO_DEBUG
-	vpk = value;
-	value++;
+	vpk = int ((sin(value) + 1.0) * 511);
+	value += 0.1;
 	#endif
 
 	// Envia o inteiro em dois bytes
@@ -63,4 +63,6 @@ void loop()
 	Serial.print(value);
 	Serial.print('\n');
 	#endif
+
+	delay(10);
 }
