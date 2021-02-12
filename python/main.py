@@ -10,6 +10,7 @@ sys.path.append("modules/")
 import serial
 import serial.tools.list_ports
 import time
+import matplotlib.pyplot as plt
 
 # Meus módulos
 import calculate
@@ -36,8 +37,22 @@ ser = serial.Serial(arduino_ports[0].device, 9600)
 voltage_file = open("voltage.csv", 'w')
 data_file = open("data.csv", 'w')
 
-# Recebe o tempo de inicio
+# Atribui os tempos de referência
 initial_time = time.time()
+last_plot_time = time.time()
+
+
+
+# Configura o gráfico de teste
+plt.ion()
+
+figure, ax = plt.subplots()
+line, = ax.plot([0], [0])
+
+plt.title("Tensão por Tempo")
+plt.xlabel("Tempo (ms)")
+plt.ylabel("Tensão (V)")
+plt.ylim(-250, 250)
 
 
 
@@ -62,6 +77,9 @@ while True:
 	# Atualiza a lista de tempo
 	times.append(time.time() - initial_time)
 
+	# Adiciona o valor da tensão à lista
+	values.append(val)
+
 
 
 	# Realiza os cálculos e reinicia o período
@@ -72,11 +90,36 @@ while True:
 			for loop in range(len(values)):
 				voltage_file.write(str(times[loop]) + ',' + str(values[loop]) + '\n')
 
+			# Calcula os valores relacionados à onda
 			media = calculate.media(values)
 			rms = calculate.rms(values)
 			vpk = calculate.vpk(values)
 
+			# Escreve os valores calculados
 			data_file.write(str(times[0]) + ',' + str(times[-1]) + ',' + str(vpk) + ',' + str(media) + ',' + str(rms) + '\n')
+
+			# Atualiza o gráfico a cada 3 segundos
+			if time.time() > last_plot_time + 3.0:
+				last_plot_time = time.time()
+
+				# Converte o tempo em milissegundos
+				base_time = times[0]
+				for loop in range(len(times)):
+					times[loop] = (times[loop] - base_time) * 1000
+	
+				# Atualiza os limites do eixo x
+				plt.xlim(times[0], times[-1])
+
+				# Atualiza os valores
+				line.set_xdata(times)
+				line.set_ydata(values)
+
+				# Desenha o gráfico
+				figure.canvas.draw()
+
+				# Limpa a fila de eventos
+				figure.canvas.flush_events()
+
 
 		# Reiniciando
 		values = []
@@ -84,10 +127,7 @@ while True:
 
 
 
-	# Adiciona o valor da tensão à lista
-	values.append(val)
-
-	# Atualiza "last_val_pos"
+	# Atualiza "last_val_neg"
 	if val > 0:
 		last_val_neg = False
 	elif val < 0:
