@@ -62,7 +62,7 @@ if SHOW_GRAPH:
 	plt.title("Tensão por Tempo")
 	plt.xlabel("Tempo (ms)")
 	plt.ylabel("Tensão (V)")
-	plt.ylim(-250, 250)
+	plt.ylim(-353, 353)
 
 
 
@@ -82,7 +82,7 @@ while True:
 	val = ser.read(2)
 
 	# converte os valores em tensão
-	val = ((val[0] << 8) + val[1] - 511)*250/512
+	val = ((val[0] << 8) + val[1] - 511)*353/512
 
 	# Atualiza a lista de tempo
 	times.append(time.time())
