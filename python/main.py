@@ -20,7 +20,7 @@ import save_data
 
 # Variáveis de DEBUG
 SHOW_GRAPH = True
-SAVE_VOLTAGE = True
+SAVE_VOLTAGE = False
 
 
 
