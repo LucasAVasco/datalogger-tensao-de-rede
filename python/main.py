@@ -95,7 +95,7 @@ while True:
 	# Realiza os cálculos e reinicia o período
 	if last_val_neg and val > 0:
 
-		if len(values) > 40:
+		if len(values) > 20:
 
 			# Salva os valores da voltagem
 			if SAVE_VOLTAGE:
