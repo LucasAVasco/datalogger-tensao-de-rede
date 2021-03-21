@@ -9,5 +9,12 @@
 # Arquivo "data.csv"
 *.csv
 
+# Imagens
+*.png
+*.jpg
+
 # Arquivo de cache do python
 __pycache__
+
+# Diretórios 'data/'
+data
