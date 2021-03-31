@@ -11,14 +11,16 @@ e gera os gráficos no diretório 'interface/'.
 
 
 # Modules
-import matplotlib.pyplot as plt
 import myModules.readFile as readFile
 import myModules.configClass as configClass
+import myModules.interface as interface
 
 
 # Open config file
 input_file = open('config.txt')
 
+
+graphs = []
 
 # Main loop
 while True:
@@ -27,12 +29,14 @@ while True:
         break
 
     # Configura o gráfico
-    graph = configClass.graph(line)
-    graph.readProperties(input_file)
-    graph.addAllFiles()
+    graphs.append(configClass.graph(line))
+    graphs[-1].readProperties(input_file)
+    graphs[-1].addAllFiles()
 
-    # Cria o gráfico
-    graph.plot()
+
+# Ceia a interface no navegador
+interface.add_all_graphs(graphs)
+interface.show()
 
 
 # Close config file
