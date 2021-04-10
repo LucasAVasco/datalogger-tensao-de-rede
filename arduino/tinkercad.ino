@@ -2,11 +2,9 @@
 #define ANALOG_PIN A0
 
 
-
 /// Variáveis
 int vpk;
 long value;
-
 
 
 /// Inicialização
@@ -21,7 +19,6 @@ void setup()
 		delay(100);
 	}
 }
-
 
 
 /// Loop principal

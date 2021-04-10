@@ -5,11 +5,9 @@
 #define ANALOG_PIN A0
 
 
-
 /// Variáveis
 int vpk;
 float value = 0;
-
 
 
 /// Inicialização
@@ -26,7 +24,6 @@ void setup()
 }
 
 
-
 /// Loop principal
 void loop()
 {
@@ -36,7 +33,6 @@ void loop()
 	// Para prototipação
 	value = float (micros()) * 120 * M_PI / 1000000;
 	vpk = int ((sin(value) + 1.0) * 511);
-
 
 	// Envia o inteiro em dois bytes
 	if (Serial.write(vpk >> 8))
