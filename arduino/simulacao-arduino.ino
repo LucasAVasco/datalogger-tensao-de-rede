@@ -9,6 +9,9 @@
 int vpk;
 float value = 0;
 
+/// Constantes
+byte secBit = 0b1 << 7;
+
 
 /// Inicialização
 void setup()
@@ -35,6 +38,6 @@ void loop()
 	vpk = int ((sin(value) + 1.0) * 511);
 
 	// Envia o inteiro em dois bytes
-	if (Serial.write(vpk >> 8))
-		Serial.write(vpk);
+	Serial.write((vpk >> 5) & 0b11111);
+	Serial.write((vpk & 0b11111) | secBit);
 }

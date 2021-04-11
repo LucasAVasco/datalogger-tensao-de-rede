@@ -82,10 +82,18 @@ ser.write(1)
 # Loop Principal
 while True:
     # Faz a leitura serial
-    val = ser.read(2)
+    serialVal = ser.read(2)
+
+    # Checa se os bytes estão na ordem certa
+    if serialVal[0] & (0b1 << 7) or not(serialVal[1] & (0b1 << 7)):
+        ser.read()
+        continue
+
+    # Junta os valores seriais lidos
+    val = (serialVal[0] << 5) | (serialVal[1] & 0b11111)
 
     # converte os valores em tensão
-    val = ((val[0] << 8) + val[1] - 511)*353/512
+    val = (val - 511)*353/512
 
     # Atualiza a lista de tempo
     times.append(time.time())
