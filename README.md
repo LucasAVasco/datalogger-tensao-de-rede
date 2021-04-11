@@ -12,14 +12,13 @@ Utiliza Arduino Leonardo para ler a etrada de tensão da rede e enviar para um c
 * Plotly
 * Dash
 * Pandas
-* Webbrowser
 
 
 
 Para instalar os módulos, pode-se utilizar o PIP3:
 
 ```
-$ pip3 install matplotlib pyserial plotly dash pandas webbrowser
+$ pip3 install matplotlib pyserial plotly dash pandas
 ```
 
 
