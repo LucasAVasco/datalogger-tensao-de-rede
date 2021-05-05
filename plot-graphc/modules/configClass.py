@@ -6,7 +6,7 @@
 # Módulos
 import matplotlib.pyplot as plt
 import re
-import myModules.readFile as readFile
+import modules.readFile as readFile
 
 
 class graph:

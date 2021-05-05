@@ -11,9 +11,9 @@ e gera os gráficos no diretório 'interface/'.
 
 
 # Modules
-import myModules.readFile as readFile
-import myModules.configClass as configClass
-import myModules.interface as interface
+import modules.readFile as readFile
+import modules.configClass as configClass
+import modules.interface as interface
 
 
 # Open config file
