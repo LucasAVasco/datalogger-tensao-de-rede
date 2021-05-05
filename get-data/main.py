@@ -89,7 +89,7 @@ while True:
     val = (serialVal[0] << 5) | (serialVal[1] & 0b11111)
 
     # converte os valores em tensão
-    val = (val - 511)*353/512
+    val = (val - 511) * 1144/511
 
     # Atualiza a lista de tempo
     times.append(time.time())
