@@ -1,16 +1,24 @@
+# Autor: Lucas de Amorim Vasco
 
+
+# Modelo para configurar gráficos
 {
-	title: Test1
-	day: 2021/03/11
-	init: 02-48
-	end: 02-50
-	plotMed: True
+	title: Título           # Título do gráfico
+	day: <ano>/<mês>/<dia>  # Dia dos dados do gráfico
+	init: <hora>-<minuto>   # Momento de início dos dados do gráfico
+	end: <hora>-<minuto>    # Momento de término dos dados do gráfico
+	plotMed: True           # Mostra o valor médio
+	plotVpk: True           # Mostra o valor de pico
+	plotRms: True           # Mostra o valor RMS
 }
 
+
+# Exemplo de configuração de um gráfico
 {
-	title: Test2
-	day: 2021/03/11
-	init: 02-49
-	end: 02-50
+	title: Gráfico de teste
+	day: 2021/05/02
+	init: 20-38
+	end: 20-40
+	plotMed: True
 	plotVpk: True
 }
