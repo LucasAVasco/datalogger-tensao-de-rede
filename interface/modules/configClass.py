@@ -135,11 +135,3 @@ class graph:
             if minute == 60:
                 minute = 0
                 hour += 1
-
-    def write(self):
-        """
-        Escreve um valor armazenado nesse objeto na tela.
-
-        Essa função é apenas para prototipação.
-        """
-        print(self.timeVet)
