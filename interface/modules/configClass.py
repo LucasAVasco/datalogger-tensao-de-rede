@@ -52,7 +52,8 @@ class graph:
             # Recebe a propriedade e formata
             propertie = re.split(':', line, 1)
             propertie[0] = re.sub(' ', '', propertie[0])
-            propertie[1] = re.sub(' ', '', propertie[1])
+            propertie[1] = re.sub('^ *', '', propertie[1])
+            propertie[1] = re.sub(' *$', '', propertie[1])
 
             # Para cada propriedade:
             if propertie[0] == "title":
