@@ -2,7 +2,7 @@
 
 
 """
-Gera a interface gráfica na no navegador.
+Gera a interface gráfica no navegador.
 
 Utiliza as bibliotecas Dash e Plotly
 """
