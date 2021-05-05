@@ -1,5 +1,4 @@
 
-grafico1
 {
 	title: Test1
 	day: 2021/03/11
@@ -8,7 +7,6 @@ grafico1
 	plotMed: True
 }
 
-grafico2
 {
 	title: Test2
 	day: 2021/03/11

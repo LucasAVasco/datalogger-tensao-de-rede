@@ -29,7 +29,7 @@ while True:
         break
 
     # Configura o gráfico
-    graphs.append(configClass.graph(line))
+    graphs.append(configClass.graph())
     graphs[-1].readProperties(input_file)
     graphs[-1].addAllFiles()
 

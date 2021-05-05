@@ -18,10 +18,9 @@ class graph:
     processamento e exportação do gráfico em png.
     """
 
-    def __init__(self, name):
+    def __init__(self):
         """Função de inicialização."""
         # Variáveis
-        self.name = name
         self.title = ''
         self.day = 0
         self.month = 0
@@ -46,9 +45,6 @@ class graph:
         """Lee as propriedades de um arquivo de configuração."""
         while True:
             line = readFile.getNextLine(input_file)
-
-            if line[0] == '{':  # Inicia
-                continue
 
             if line[0] == '}':  # Finaliza
                 break
