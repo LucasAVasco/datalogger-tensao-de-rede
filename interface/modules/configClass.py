@@ -139,35 +139,6 @@ class graph:
                 minute = 0
                 hour += 1
 
-    def plot(self):
-        """Cria o gráfico."""
-        # Define o título
-        plt.title(self.title)
-
-        ylabel = ''
-
-        # Plota os gráficos que devem ser plotados
-        if self.hasVpkPlot:
-            plt.plot(self.timeVet, self.vpkVet)
-            ylabel += " Vpk "
-
-        if self.hasRmsPlot:
-            plt.plot(self.timeVet, self.rmsVet)
-            ylabel += " Rms "
-
-        if self.hasMedPlot:
-            plt.plot(self.timeVet, self.medVet)
-            ylabel += " Med "
-
-        # Define as outras propriedades do gráfico
-        plt.ylabel(ylabel + "(V)")
-        plt.xlabel("time (s)")
-        plt.ylim(0, 360)
-
-        # Exporta e limpa o gráfico
-        plt.savefig("interface/" + self.name + ".png")
-        plt.clf()
-
     def write(self):
         """
         Escreve um valor armazenado nesse objeto na tela.
