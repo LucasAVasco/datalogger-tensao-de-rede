@@ -43,13 +43,19 @@ def add_graph(graph):
         ))
 
     if graph.hasRmsPlot:
-        figures[-1].add_trace(go.Scatter(x=graph.timeVet, y=graph.rmsVet))
+        figures[-1].add_trace(go.Scatter(
+            x=graph.timeVet, y=graph.rmsVet, name="Vrms [Vac]", showlegend=True
+            ))
 
     if graph.hasMedPlot:
-        figures[-1].add_trace(go.Scatter(x=graph.timeVet, y=graph.medVet))
+        figures[-1].add_trace(go.Scatter(
+            x=graph.timeVet, y=graph.medVet, name="Vmed [Vcc]", showlegend=True
+            ))
 
     if graph.hasVpkPlot:
-        figures[-1].add_trace(go.Scatter(x=graph.timeVet, y=graph.vpkVet))
+        figures[-1].add_trace(go.Scatter(
+            x=graph.timeVet, y=graph.vpkVet, name="Vpk [Vcc]", showlegend=True
+            ))
 
 
 def add_all_graphs(graphs):
