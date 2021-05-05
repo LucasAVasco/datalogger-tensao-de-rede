@@ -100,7 +100,7 @@ class graph:
 
         # Abre o arquivo '.csv' com os dados
         input_file = open(
-                "data/" + str(year) + "-" + str(month) + "-" +
+                "../get-data/data/" + str(year) + "-" + str(month) + "-" +
                 str(day) + '/' + str(hour) + "-" + str(minute) + ".csv", 'r'
                 )
 
