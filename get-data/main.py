@@ -75,10 +75,6 @@ values = []
 times = []
 
 
-# Avisa o arduino que pode começar a medir
-ser.write(1)
-
-
 # Loop Principal
 while True:
     # Faz a leitura serial

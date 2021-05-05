@@ -18,12 +18,6 @@ void setup()
 {
 	// Inicia a comunicação serial
 	Serial.begin(9600);
-
-	// Espera até o código python estiver carregado
-	while (Serial.available() == 0)
-	{
-		delay(100);
-	}
 }
 
 
