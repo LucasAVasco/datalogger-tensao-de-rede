@@ -25,4 +25,4 @@ $ pip3 install matplotlib pyserial plotly dash pandas
 ## A fazer:
 - [ ] Verificar se os dados existem antes de gerar os gráficos
 - [x] Arrumar o posicionamento do título do gráfico na interface
-- [ ] Finalizar a interface
+- [x] Finalizar a interface
