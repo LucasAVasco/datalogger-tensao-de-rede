@@ -19,18 +19,22 @@ import webbrowser
 
 # Variváveis
 figures = []
-titles = []
 
 
 # Funções
 def add_graph(graph):
     """Adiciona um gráfico a interface de navegador."""
     global figures
-    global titles
 
-    titles.append(graph.title)
-
-    figures.append(go.Figure())
+    figures.append(go.Figure(
+        {
+            "layout": {
+                "title": {
+                    "text": graph.title
+                    }
+                }
+            }
+        ))
 
     if graph.hasRmsPlot:
         figures[-1].add_trace(go.Scatter(x=graph.timeVet, y=graph.rmsVet))
@@ -64,11 +68,6 @@ def show():
 
     num = 0
     for loop in figures:
-        site.append(html.H2(
-            style={"margin-top": "100pt"},
-            children=titles[num]
-            ))
-
         site.append(dcc.Graph(id="Fig" + str(num), figure=loop))
         num += 1
 
