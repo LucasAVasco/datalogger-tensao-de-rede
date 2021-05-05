@@ -31,6 +31,12 @@ def add_graph(graph):
             "layout": {
                 "title": {
                     "text": graph.title
+                    },
+                "xaxis": {
+                    "title": "Tempo [s]"
+                    },
+                "yaxis": {
+                    "title": "Tensão [V]"
                     }
                 }
             }
