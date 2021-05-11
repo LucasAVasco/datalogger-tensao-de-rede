@@ -95,11 +95,20 @@ class graph:
         hour = readFile.format_value(hour)
         minute = readFile.format_value(minute)
 
-        # Abre o arquivo '.csv' com os dados
-        input_file = open(
+        # Nome do arquivo que será aberto
+        input_file = (
                 "../get-data/data/" + str(year) + "-" + str(month) + "-" +
-                str(day) + '/' + str(hour) + "-" + str(minute) + ".csv", 'r'
+                str(day) + '/' + str(hour) + "-" + str(minute) + ".csv"
                 )
+
+        try:
+            # Abre o arquivo '.csv' com os dados
+            input_file = open(input_file, 'r')
+
+        except FileNotFoundError:
+            # Se o arquivo não foi encontrado
+            print("Não foi encontrado o arquivo: " + input_file)
+            exit(1)
 
         while True:
             line = input_file.readline()
